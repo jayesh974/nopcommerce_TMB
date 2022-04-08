@@ -1,5 +1,9 @@
 package com.nopcommerce.testCases;
 
+import static com.nopcommerse.Utils.ConfigServices.getBaseURL;
+import static com.nopcommerse.Utils.ConfigServices.getPassword;
+import static com.nopcommerse.Utils.ConfigServices.getUserEmail;
+
 import java.io.IOException;
 
 import org.openqa.selenium.By;
@@ -8,20 +12,21 @@ import org.testng.annotations.Test;
 
 import com.nopcommerce.pageObjects.AddcustomerPage;
 import com.nopcommerce.pageObjects.LoginPage;
+import com.nopcommerse.Utils.Random.RandomService;
 
-public class TC_AddCustomerTest_003 extends BaseClass
+public class TC_AddCustomerTest_003 extends BaseTest
 {
 	
 	@Test
 	public void addNewCustomer() throws IOException, InterruptedException
 	{
-		driver.get(baseURL);
+		driver.get(getBaseURL());
 		
 		LoginPage lp=new LoginPage(driver);
-		lp.setUserName(username);
+		lp.setUserName(getUserEmail());
 		logger.info("User name is provided");
 		
-		lp.setPassword(password);
+		lp.setPassword(getPassword());
 		logger.info("password is provided");
 		
 		lp.clickLogin();
@@ -37,7 +42,7 @@ public class TC_AddCustomerTest_003 extends BaseClass
 		
 		addcust.clickOnAddnew();
 				
-		String email=randomestring()+"@gmail.com";
+		String email=RandomService.getRandomEmail();
 		
 		logger.info("Providing email");
 		addcust.setEmail(email);
@@ -71,20 +76,13 @@ public class TC_AddCustomerTest_003 extends BaseClass
 		
 		logger.info("validation started....");
 		
-		String msg=driver.findElement(By.tagName("body")).getText();
+		String ActualMessage=driver.findElement(By.tagName("body")).getText();
 		//String msg=driver.findElement(By.xpath("/html/body/div[3]/div[3]/div[1]")).getText();
 		
 		
-		if(msg.contains("The new customer has been added successfully"))
-		{
-			Assert.assertTrue(true);
-			logger.info("test case passed....");
-		}
-		else
-		{
-			captureScreen(driver,"addNewCustomer");
-			Assert.assertTrue(false);
-		}
+		Assert.assertEquals(ActualMessage,"The new customer has been added successfully" );
+		logger.info("test case passed....");
+		
 	
 	}
 	

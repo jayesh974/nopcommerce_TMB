@@ -256,3 +256,9 @@
 2018-12-17 12:16:04,515 [main] INFO ecommerce - clicking on save
 2018-12-17 12:16:06,154 [main] INFO ecommerce - validation started....
 2018-12-17 12:16:06,345 [main] INFO ecommerce - test case passed....
+2022-04-07 08:24:32,155 [main] INFO ecommerce - User name is provided
+2022-04-07 08:24:32,222 [main] INFO ecommerce - password is provided
+2022-04-07 10:42:27,481 [main] INFO ecommerce - User name is provided
+2022-04-07 10:42:27,639 [main] INFO ecommerce - password is provided
+2022-04-07 12:00:57,552 [main] INFO ecommerce - User name is provided
+2022-04-07 12:00:57,733 [main] INFO ecommerce - password is provided

@@ -1,5 +1,8 @@
 package com.nopcommerce.testCases;
 
+import static com.nopcommerse.Utils.ConfigServices.getPassword;
+import static com.nopcommerse.Utils.ConfigServices.getUserEmail;
+
 import java.io.IOException;
 
 import org.testng.Assert;
@@ -8,23 +11,24 @@ import org.testng.annotations.Test;
 
 import com.nopcommerce.pageObjects.LoginPage;
 import com.nopcommerce.utilities.XLUtils;
+import com.nopcommerse.Utils.ConfigServices;
 
-public class TC_LoginDDT_002 extends BaseClass
+public class TC_LoginDDT_002 extends BaseTest
 {
 
 	@Test(dataProvider="LoginData")
 	
 	public void loginTest(String user, String pwd) throws InterruptedException{
 		
-		driver.get(baseURL);
+		driver.get(ConfigServices.getBaseURL());
 		driver.manage().window().maximize(); 
 		
 		LoginPage lp = new LoginPage(driver);
 				
-		lp.setUserName(user);
+		lp.setUserName(getUserEmail());
 		logger.info("User provided"); //logger msg
 		
-		lp.setPassword(pwd);
+		lp.setPassword(getPassword());
 		logger.info("Password provided");//logger msg
 		
 		lp.clickLogin();
